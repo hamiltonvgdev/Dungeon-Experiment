@@ -1,0 +1,246 @@
+/*
+ * Copyright LWJGL. All rights reserved.
+ * License terms: http://lwjgl.org/license.php
+ * MACHINE GENERATED FILE, DO NOT EDIT
+ */
+package org.lwjgl.opengl;
+
+import java.nio.*;
+
+import org.lwjgl.*;
+import org.lwjgl.system.*;
+
+import static org.lwjgl.system.Checks.*;
+import static org.lwjgl.system.JNI.*;
+import static org.lwjgl.system.MemoryStack.*;
+import static org.lwjgl.system.MemoryUtil.*;
+
+import org.lwjgl.system.linux.*;
+
+/**
+ * Native bindings to the <a href="http://www.opengl.org/registry/specs/SGIX/fbconfig.txt">GLX_SGIX_fbconfig</a> extension.
+ * 
+ * <p>This extension introduces a new way to describe the capabilities of a GLX drawable (i.e., to describe the depth of color buffer components and the type
+ * and size of ancillary buffers), removes the "similarity" requirement when making a context current to a drawable, and supports  RGBA rendering to
+ * one-and two-component Windows and GLX Pixmaps.</p>
+ */
+public class GLXSGIXFBConfig {
+
+	/** Accepted by the {@code attribute} parameter of {@link #glXGetFBConfigAttribSGIX GetFBConfigAttribSGIX}, and by the {@code attrib_list} parameter of {@link #glXChooseFBConfigSGIX ChooseFBConfigSGIX}. */
+	public static final int
+		GLX_DRAWABLE_TYPE_SGIX = 0x8010,
+		GLX_RENDER_TYPE_SGIX   = 0x8011,
+		GLX_X_RENDERABLE_SGIX  = 0x8012;
+
+	/**
+	 * Accepted by the {@code attribute} parameter of {@link #glXGetFBConfigAttribSGIX GetFBConfigAttribSGIX}, the {@code attrib_list} parameter of {@link #glXChooseFBConfigSGIX ChooseFBConfigSGIX},
+	 * by the {@code attribute} parameter of {@link GLXSGIXPbuffer#glXQueryGLXPbufferSGIX QueryGLXPbufferSGIX} and by the {@code attribute} parameter of
+	 * {@link GLXEXTImportContext#glXQueryContextInfoEXT QueryContextInfoEXT}.
+	 */
+	public static final int GLX_FBCONFIG_ID_SGIX = 0x8013;
+
+	/** Accepted by the {@code attribute} parameter of {@link #glXGetFBConfigAttribSGIX GetFBConfigAttribSGIX}. */
+	public static final int GLX_SCREEN_EXT = 0x800C;
+
+	/**
+	 * Returned by {@link #glXGetFBConfigAttribSGIX GetFBConfigAttribSGIX} (when {@code attribute} is set to {@link #GLX_DRAWABLE_TYPE_SGIX DRAWABLE_TYPE_SGIX}) and accepted by the {@code attrib_list}
+	 * parameter of {@link #glXChooseFBConfigSGIX ChooseFBConfigSGIX} (following the {@link #GLX_DRAWABLE_TYPE_SGIX DRAWABLE_TYPE_SGIX} token).
+	 */
+	public static final int
+		GLX_WINDOW_BIT_SGIX = 0x1,
+		GLX_PIXMAP_BIT_SGIX = 0x2;
+
+	/**
+	 * Returned by {@link #glXGetFBConfigAttribSGIX GetFBConfigAttribSGIX} (when {@code attribute} is set to {@link #GLX_RENDER_TYPE_SGIX RENDER_TYPE_SGIX}) and accepted by the {@code attrib_list}
+	 * parameter of {@link #glXChooseFBConfigSGIX ChooseFBConfigSGIX} (following the {@link #GLX_RENDER_TYPE_SGIX RENDER_TYPE_SGIX} token).
+	 */
+	public static final int
+		GLX_RGBA_BIT_SGIX        = 0x1,
+		GLX_COLOR_INDEX_BIT_SGIX = 0x2;
+
+	/** Accepted by the {@code render_type} parameter of {@link #glXCreateContextWithConfigSGIX CreateContextWithConfigSGIX}. */
+	public static final int
+		GLX_RGBA_TYPE_SGIX        = 0x8014,
+		GLX_COLOR_INDEX_TYPE_SGIX = 0x8015;
+
+	protected GLXSGIXFBConfig() {
+		throw new UnsupportedOperationException();
+	}
+
+	static boolean isAvailable(GLXCapabilities caps) {
+		return checkFunctions(
+			caps.glXGetFBConfigAttribSGIX, caps.glXChooseFBConfigSGIX, caps.glXCreateGLXPixmapWithConfigSGIX, caps.glXCreateContextWithConfigSGIX, 
+			caps.glXGetVisualFromFBConfigSGIX, caps.glXGetFBConfigFromVisualSGIX
+		);
+	}
+
+	// --- [ glXGetFBConfigAttribSGIX ] ---
+
+	/**
+	 * Gets the value of a GLX attribute for a {@code GLXFBConfigSGIX}.
+	 *
+	 * @param display   the connection to the X server
+	 * @param config    the {@code GLXFBConfigSGIX} being queried
+	 * @param attribute the attribute to query
+	 * @param value     returns the attribute value
+	 */
+	public static int nglXGetFBConfigAttribSGIX(long display, long config, int attribute, long value) {
+		long __functionAddress = GL.getCapabilitiesGLXClient().glXGetFBConfigAttribSGIX;
+		if ( CHECKS ) {
+			checkFunctionAddress(__functionAddress);
+			checkPointer(display);
+			checkPointer(config);
+		}
+		return callPPIPI(__functionAddress, display, config, attribute, value);
+	}
+
+	/**
+	 * Gets the value of a GLX attribute for a {@code GLXFBConfigSGIX}.
+	 *
+	 * @param display   the connection to the X server
+	 * @param config    the {@code GLXFBConfigSGIX} being queried
+	 * @param attribute the attribute to query
+	 * @param value     returns the attribute value
+	 */
+	public static int glXGetFBConfigAttribSGIX(long display, long config, int attribute, IntBuffer value) {
+		if ( CHECKS )
+			checkBuffer(value, 1);
+		return nglXGetFBConfigAttribSGIX(display, config, attribute, memAddress(value));
+	}
+
+	// --- [ glXChooseFBConfigSGIX ] ---
+
+	/**
+	 * Gets {@code GLXFBConfigSGIX}s that match a list of attributes or to get the list of GLXFBConfigSGIXs that are available on the specified screen.
+	 *
+	 * @param display     the connection to the X server
+	 * @param screen      the screen number
+	 * @param attrib_list an optional list of attributes, terminated with org.lwjgl.system.linux.{@code None}
+	 * @param nelements   the number of {@code GLXFBConfigSGIX} returned
+	 */
+	public static long nglXChooseFBConfigSGIX(long display, int screen, long attrib_list, long nelements) {
+		long __functionAddress = GL.getCapabilitiesGLXClient().glXChooseFBConfigSGIX;
+		if ( CHECKS ) {
+			checkFunctionAddress(__functionAddress);
+			checkPointer(display);
+		}
+		return callPIPPP(__functionAddress, display, screen, attrib_list, nelements);
+	}
+
+	/**
+	 * Gets {@code GLXFBConfigSGIX}s that match a list of attributes or to get the list of GLXFBConfigSGIXs that are available on the specified screen.
+	 *
+	 * @param display     the connection to the X server
+	 * @param screen      the screen number
+	 * @param attrib_list an optional list of attributes, terminated with org.lwjgl.system.linux.{@code None}
+	 */
+	public static PointerBuffer glXChooseFBConfigSGIX(long display, int screen, IntBuffer attrib_list) {
+		MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+		IntBuffer nelements = stack.callocInt(1);
+		try {
+			long __result = nglXChooseFBConfigSGIX(display, screen, memAddressSafe(attrib_list), memAddress(nelements));
+			return memPointerBuffer(__result, nelements.get(0));
+		} finally {
+			stack.setPointer(stackPointer);
+		}
+	}
+
+	// --- [ glXCreateGLXPixmapWithConfigSGIX ] ---
+
+	/**
+	 * Creates a GLX pixmap using a {@code GLXFBConfigSGIX}.
+	 *
+	 * @param display the connection to the X server
+	 * @param config  the {@code GLXFBConfigSGIX}
+	 * @param pixmap  the pixmap
+	 */
+	public static long glXCreateGLXPixmapWithConfigSGIX(long display, long config, long pixmap) {
+		long __functionAddress = GL.getCapabilitiesGLXClient().glXCreateGLXPixmapWithConfigSGIX;
+		if ( CHECKS ) {
+			checkFunctionAddress(__functionAddress);
+			checkPointer(display);
+			checkPointer(config);
+		}
+		return callPPPP(__functionAddress, display, config, pixmap);
+	}
+
+	// --- [ glXCreateContextWithConfigSGIX ] ---
+
+	/**
+	 * Creates a GLX context using a {@code GLXFBConfigSGIX}.
+	 *
+	 * @param display     the connection to the X server
+	 * @param config      the {@code GLXFBConfigSGIX}
+	 * @param render_type the render type. One of:<br><table><tr><td>{@link #GLX_RGBA_TYPE_SGIX RGBA_TYPE_SGIX}</td><td>{@link #GLX_COLOR_INDEX_TYPE_SGIX COLOR_INDEX_TYPE_SGIX}</td></tr></table>
+	 * @param share_list  the GLX context to share objects with
+	 * @param direct      direct rendering request
+	 */
+	public static long glXCreateContextWithConfigSGIX(long display, long config, int render_type, long share_list, int direct) {
+		long __functionAddress = GL.getCapabilitiesGLXClient().glXCreateContextWithConfigSGIX;
+		if ( CHECKS ) {
+			checkFunctionAddress(__functionAddress);
+			checkPointer(display);
+			checkPointer(config);
+			checkPointer(share_list);
+		}
+		return callPPIPIP(__functionAddress, display, config, render_type, share_list, direct);
+	}
+
+	// --- [ glXGetVisualFromFBConfigSGIX ] ---
+
+	/**
+	 * Retrieves the associated visual of a {@code GLXFBConfigSGIX}.
+	 *
+	 * @param display the connection to the X server
+	 * @param config  the {@code GLXFBConfigSGIX}
+	 */
+	public static long nglXGetVisualFromFBConfigSGIX(long display, long config) {
+		long __functionAddress = GL.getCapabilitiesGLXClient().glXGetVisualFromFBConfigSGIX;
+		if ( CHECKS ) {
+			checkFunctionAddress(__functionAddress);
+			checkPointer(display);
+			checkPointer(config);
+		}
+		return callPPP(__functionAddress, display, config);
+	}
+
+	/**
+	 * Retrieves the associated visual of a {@code GLXFBConfigSGIX}.
+	 *
+	 * @param display the connection to the X server
+	 * @param config  the {@code GLXFBConfigSGIX}
+	 */
+	public static XVisualInfo glXGetVisualFromFBConfigSGIX(long display, long config) {
+		long __result = nglXGetVisualFromFBConfigSGIX(display, config);
+		return XVisualInfo.create(__result);
+	}
+
+	// --- [ glXGetFBConfigFromVisualSGIX ] ---
+
+	/**
+	 * Retrieves the {@code GLXFBConfigSGIX} associated with a visual.
+	 *
+	 * @param display the connection to the X server
+	 * @param vis     the visual
+	 */
+	public static long nglXGetFBConfigFromVisualSGIX(long display, long vis) {
+		long __functionAddress = GL.getCapabilitiesGLXClient().glXGetFBConfigFromVisualSGIX;
+		if ( CHECKS ) {
+			checkFunctionAddress(__functionAddress);
+			checkPointer(display);
+			XVisualInfo.validate(vis);
+		}
+		return callPPP(__functionAddress, display, vis);
+	}
+
+	/**
+	 * Retrieves the {@code GLXFBConfigSGIX} associated with a visual.
+	 *
+	 * @param display the connection to the X server
+	 * @param vis     the visual
+	 */
+	public static long glXGetFBConfigFromVisualSGIX(long display, XVisualInfo vis) {
+		return nglXGetFBConfigFromVisualSGIX(display, vis.address());
+	}
+
+}
