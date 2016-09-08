@@ -19,11 +19,11 @@ public class MapUpdate {
 	public static void update(GameContainer gc) throws SlickException {
 		Input io = gc.getInput();
 
-		if (io.isMouseButtonDown(io.MOUSE_LEFT_BUTTON))
+	/*	if (io.isMouseButtonDown(io.MOUSE_LEFT_BUTTON))
 			LightMap.lights
 					.add(new Light(Mouse.getX() / 8, (Config.HEIGHT - Mouse.getY()) / 8, 64, new Color(255, 225, 225)));
 
-		LightMap.update(gc);
+		LightMap.update(gc);*/
 	}
 
 	public static boolean doesCollide(double X, double Y) {

@@ -9,11 +9,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-import map.LightMap;
 import map.MapRender;
 import map.MapUpdate;
 
-public class MainClass extends BasicGame {
+public class MainClass extends BasicGame 
+{
 
 	public MainClass(String gamename) {
 		super(gamename);
@@ -25,8 +25,8 @@ public class MainClass extends BasicGame {
 	}
 
 	@Override
-	public void update(GameContainer gc, int i) throws SlickException {
-
+	public void update(GameContainer gc, int i) throws SlickException 
+	{
 		MapUpdate.update(gc);
 
 	}
@@ -39,7 +39,7 @@ public class MainClass extends BasicGame {
 
 		// main render method//
 		MapRender.render(gc, g);
-
+		
 	}
 
 	public static void main(String[] args) {
@@ -53,6 +53,8 @@ public class MainClass extends BasicGame {
 
 			appgc.setClearEachFrame(false);
 
+			System.out.println(Config.WIDTH + " " + Config.HEIGHT);
+			
 			appgc.setDisplayMode(Config.WIDTH, Config.HEIGHT, false);
 
 			appgc.start();

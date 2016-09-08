@@ -19,6 +19,6 @@ public class MapRender {
 		}
 
 		// this is always last//
-		LightMap.render(gc, g);
+		//LightMap.render(gc, g);
 	}
 }

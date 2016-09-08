@@ -19,11 +19,12 @@ public class AnimationSet
 	{
 		File folder = new File(ref);
 		File[] list = folder.listFiles();
-		BasicImage sprite;
+		
+		Animation = new ArrayList<BasicImage>();
 		
 		for(File frame : list)
 		{
-			sprite = new BasicImage(frame.getPath());
+			BasicImage sprite = new BasicImage(frame.getPath());
 			Animation.add(sprite);
 		}
 		
@@ -38,7 +39,7 @@ public class AnimationSet
 	{
 		if(System.currentTimeMillis() - lastTick >= delay)
 		{
-			if(frame < Animation.size())
+			if(frame < Animation.size() - 1)
 			{
 				frame ++;
 			}else
@@ -54,15 +55,17 @@ public class AnimationSet
 	{
 		if(System.currentTimeMillis() - lastTick >= delay)
 		{
-			if(counter < Animation.size())
+			System.out.println(counter);
+			if(counter < Animation.size() - 1)
 			{
 				frame ++;
-			}else if(counter < Animation.size()*2 - 1)
+				counter ++;
+			}else if(counter < Animation.size()*2 - 2)
 			{
 				frame --;
+				counter ++;
 			}else
 			{
-				frame = 0;
 				counter = 0;
 			}
 			
@@ -74,9 +77,14 @@ public class AnimationSet
 	{
 		Random gen = new Random();
 		
-		int index = gen.nextInt(Animation.size() - 1);
-		
-		frame = index;
+		if(System.currentTimeMillis() - lastTick >= delay)
+		{
+			int index = gen.nextInt(Animation.size() - 1) + 1;
+			
+			frame = index;
+			
+			lastTick = System.currentTimeMillis();
+		}
 	}
 	
 	

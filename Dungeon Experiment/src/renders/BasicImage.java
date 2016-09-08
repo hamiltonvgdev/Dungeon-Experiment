@@ -11,6 +11,8 @@ public class BasicImage
 	
 	public BasicImage(String ref)
 	{
+		flip = false;
+		
 		try {
 			sprite = new Image(ref);
 		} catch (SlickException e) {
@@ -19,6 +21,11 @@ public class BasicImage
 		}
 	}
 
+	public String getPath()
+	{
+		return sprite.getResourceReference();
+	}
+	
 	private void setError()
 	{
 		try {
@@ -34,11 +41,10 @@ public class BasicImage
 	}
 	
 	public void render(float x, float y, float width, float height, float rot, Graphics g) 
-	{   
-		Image image = this.sprite;
-	    image = image.getFlippedCopy(this.flip, false);
-	    image.setFilter(2);
-	    image.setRotation(rot);
-	    image.draw(x - width / 2.0F, y - height / 2.0F, width, height);
+	{
+	    sprite = sprite.getFlippedCopy(this.flip, false);
+	    sprite.setFilter(2);
+	    sprite.setRotation(rot);
+	    sprite.draw(x - width / 2.0F, y - height / 2.0F, width, height);
 	}
 }
