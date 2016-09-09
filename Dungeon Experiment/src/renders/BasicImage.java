@@ -16,7 +16,6 @@ public class BasicImage
 		try {
 			sprite = new Image(ref);
 		} catch (SlickException e) {
-			e.printStackTrace();
 			setError();
 		}
 	}

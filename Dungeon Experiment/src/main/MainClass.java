@@ -21,7 +21,6 @@ public class MainClass extends BasicGame
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		Initialize.init();
 	}
 
 	@Override

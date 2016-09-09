@@ -12,7 +12,7 @@ public class MapRender {
 
 			for (int y = 0; y < 20; y++) {
 
-				MapUpdate.room.getBlock(x, y).render(x, y, g);
+				MapUpdate.room.getBlock(x, y).render((float)x,(float) y, 32.0F, 32.0F, 0.0F, g);
 
 			}
 

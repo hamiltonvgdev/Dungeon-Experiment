@@ -14,7 +14,7 @@ import main.Quad;
 
 public class MapUpdate {
 
-	public static Room room = new Room(new Block(0), new Block(1));
+	public static Room room = new Room(new Block("res/textures/blocks/Stone.png"), new Block("res/textures/blocks/LightStone.png"));
 
 	public static void update(GameContainer gc) throws SlickException {
 		Input io = gc.getInput();
