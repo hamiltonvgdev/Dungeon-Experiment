@@ -1,10 +1,10 @@
 package dungeon;
 
-public class Room {
+public class SimpleRoom {
 
 	private Block[][] blocks = new Block[32][20];
 
-	public Room(Block walls, Block floor) {
+	public SimpleRoom(Block walls, Block floor) {
 
 		walls.setCollides(true);
 		floor.setCollides(false);
