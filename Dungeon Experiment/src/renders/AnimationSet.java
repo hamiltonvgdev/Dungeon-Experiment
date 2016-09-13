@@ -15,6 +15,8 @@ public class AnimationSet
 	
 	int counter;
 	
+	boolean flip;
+	
 	public AnimationSet(String ref, long delay)
 	{
 		File folder = new File(ref);
@@ -33,6 +35,7 @@ public class AnimationSet
 		
 		frame = 0;
 		counter = 0;
+		
 	}
 	
 	public void resetAnimate()
@@ -85,12 +88,19 @@ public class AnimationSet
 			
 			lastTick = System.currentTimeMillis();
 		}
+		
 	}
 	
-	
-	
 	public void render(float x, float y, float width, float height, float rot, Graphics g) 
-	{   
+	{
 		Animation.get(frame).render(x, y, width, height, rot, g);
+	}
+	
+	public void setFlip(boolean Flip)
+	{
+		for(BasicImage frame : Animation)
+		{
+			frame.setFlip(Flip);
+		}
 	}
 }

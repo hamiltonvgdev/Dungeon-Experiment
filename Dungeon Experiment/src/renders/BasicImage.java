@@ -41,9 +41,10 @@ public class BasicImage
 	
 	public void render(float x, float y, float width, float height, float rot, Graphics g) 
 	{
-	    sprite = sprite.getFlippedCopy(this.flip, false);
-	    sprite.setFilter(2);
-	    sprite.setRotation(rot);
-	    sprite.draw(x - width / 2.0F, y - height / 2.0F, width, height);
+		Image image = sprite.copy();
+	    image = sprite.getFlippedCopy(this.flip, false);
+	    image.setFilter(2);
+	    image.setRotation(rot);
+	    image.draw(x - width / 2.0F, y - height / 2.0F, width, height);
 	}
 }

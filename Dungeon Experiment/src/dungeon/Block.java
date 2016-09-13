@@ -33,9 +33,9 @@ public class Block {
 
 	}
 
-	public void render(float x, float y, float width, float height, float rot, Graphics g) {
+	public void render(float x, float y, float xa, float ya, float width, float height, float rot, Graphics g) {
 
-		sprite.render( x * 32, y * 32, width, height, rot, g);
+		sprite.render( x * 32 - xa, y * 32 - ya, width, height, rot, g);
 
 	}
 

@@ -7,14 +7,14 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import dungeon.Block;
-import dungeon.Room;
+import dungeon.SimpleRoom;
 import main.Config;
 import main.QM;
 import main.Quad;
 
 public class MapUpdate {
 
-	public static Room room = new Room(new Block("res/textures/blocks/Stone.png"), new Block("res/textures/blocks/LightStone.png"));
+	public static SimpleRoom room = new SimpleRoom(new Block("res/textures/blocks/Stone.png"), new Block("res/textures/blocks/LightStone.png"));
 
 	public static void update(GameContainer gc) throws SlickException {
 		Input io = gc.getInput();
