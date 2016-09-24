@@ -4,9 +4,18 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import enemies.Entity;
+import main.MainClass;
+
 public class MapRender {
 	private static float xD = 0;
 	private static float yD = 0;
+	private static Level level;
+	
+	public static void init(Level map)
+	{
+		level = map;
+	}
 
 	public static void render(GameContainer gc, Graphics g) throws SlickException {
 
@@ -29,5 +38,10 @@ public class MapRender {
 	{
 		xD += xa;
 		yD += ya;
+		
+		for (Entity e : level.getEntities())
+		{
+			e.Move(-xa, -ya);
+		}
 	}
 }

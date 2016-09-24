@@ -39,6 +39,11 @@ public class BasicImage
 		this.flip = flip;
 	}
 	
+	public Image getImage()
+	{
+		return sprite;
+	}
+	
 	public void render(float x, float y, float width, float height, float rot, Graphics g) 
 	{
 		Image image = sprite.copy();

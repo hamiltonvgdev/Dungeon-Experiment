@@ -13,8 +13,13 @@ import main.QM;
 import main.Quad;
 
 public class MapUpdate {
-
+	
 	public static SimpleRoom room = new SimpleRoom(new Block("res/textures/blocks/Stone.png"), new Block("res/textures/blocks/LightStone.png"));
+	
+	public static void init()
+	{
+		
+	}
 
 	public static void update(GameContainer gc) throws SlickException {
 		Input io = gc.getInput();
@@ -24,6 +29,7 @@ public class MapUpdate {
 					.add(new Light(Mouse.getX() / 8, (Config.HEIGHT - Mouse.getY()) / 8, 64, new Color(255, 225, 225)));
 
 		LightMap.update(gc);*/
+		
 	}
 
 	public static boolean doesCollide(double X, double Y) {
