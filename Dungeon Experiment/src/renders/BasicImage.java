@@ -13,10 +13,16 @@ public class BasicImage
 	{
 		flip = false;
 		
-		try {
-			sprite = new Image(ref);
-		} catch (SlickException e) {
+		if(ref.equals("") || ref.equals(null))
+		{
 			setError();
+		}else
+		{
+			try {
+				sprite = new Image(ref);
+			} catch (SlickException e) {
+				setError();
+			}
 		}
 	}
 
@@ -37,6 +43,11 @@ public class BasicImage
 	public void setFlip(boolean flip)
 	{
 		this.flip = flip;
+	}
+	
+	public Image getImage()
+	{
+		return sprite;
 	}
 	
 	public void render(float x, float y, float width, float height, float rot, Graphics g) 

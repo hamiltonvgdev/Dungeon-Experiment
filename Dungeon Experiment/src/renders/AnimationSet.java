@@ -58,7 +58,6 @@ public class AnimationSet
 	{
 		if(System.currentTimeMillis() - lastTick >= delay)
 		{
-			System.out.println(counter);
 			if(counter < Animation.size() - 1)
 			{
 				frame ++;
@@ -102,5 +101,20 @@ public class AnimationSet
 		{
 			frame.setFlip(Flip);
 		}
+	}
+	
+	public String getRef(int i)
+	{
+		return Animation.get(i).getPath();
+	}
+	
+	public ArrayList getSet()
+	{
+		return Animation;
+	}
+	
+	public int getCurrentFrame()
+	{
+		return frame;
 	}
 }

@@ -2,6 +2,7 @@ package main;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -12,12 +13,17 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
+import enemies.Fireling;
 import map.MapRender;
 import map.MapUpdate;
+import particle.OrbitingParticle;
+import player.BasicPlayer;
+import player.Ninja;
 
 public class MainClass extends BasicGame 
 {
-	Input input = new Input(1);
+	public map.Level level;
+	Ninja derp;
 
 	public MainClass(String gamename) {
 		super(gamename);
@@ -26,6 +32,26 @@ public class MainClass extends BasicGame
 	@Override
 	public void init(GameContainer gc) throws SlickException 
 	{
+		level = new map.Level();
+		MapRender.init(level);
+		
+		derp = new Ninja(level, 2);
+		
+		Fireling Craig = new Fireling(level, 600, 300, 0.5F, derp);
+		
+		level.addEntity(Craig);
+		
+		Craig = new Fireling(level, 300, 600, 0.5F, derp);
+		
+		level.addEntity(Craig);
+		
+		Craig = new Fireling(level, 300, 900, 0.5F, derp);
+		
+		level.addEntity(Craig);
+		
+		Craig = new Fireling(level, 900, 300, 0.5F, derp);
+		
+		level.addEntity(Craig);
 		
 	}
 
@@ -33,6 +59,10 @@ public class MainClass extends BasicGame
 	public void update(GameContainer gc, int i) throws SlickException 
 	{
 		MapUpdate.update(gc);
+		
+		level.update();
+		
+		derp.update();
 	}
 
 	@Override
@@ -50,6 +80,11 @@ public class MainClass extends BasicGame
 
 		// main render method//
 		MapRender.render(gc, g);
+		
+		level.render(gc, g);
+		
+		derp.render(g);
+		
 	}
 
 	public static void main(String[] args) {

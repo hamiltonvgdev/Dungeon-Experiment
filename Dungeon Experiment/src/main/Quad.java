@@ -1,9 +1,9 @@
 package main;
 
 public class Quad {
-	public int width, height, x, y;
+	public float width, height, x, y;
 
-	public Quad(int x, int y, int width, int height) {
+	public Quad(float x, float y, float width, float height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -17,5 +17,29 @@ public class Quad {
 					if (y <= this.y + this.height)
 						return true;
 		return false;
+	}
+	
+	public boolean checkQuad(Quad quad)
+	{
+		boolean intersect = false;
+		
+		for(float x = quad.x - quad.width; x < quad.x + quad.width; x ++)
+		{
+			for(float y = quad.y - quad.height; y < quad.y + quad.height; y ++)
+			{
+				if(checkPoint(x,y))
+				{
+					intersect = true;
+					break;
+				}
+			}
+			
+			if(intersect)
+			{
+				break;
+			}
+		}
+		
+		return intersect;
 	}
 }
