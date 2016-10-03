@@ -6,6 +6,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import main.Quad;
+import map.Level;
 import player.BasicPlayer;
 import renders.AnimationSet;
 
@@ -16,6 +18,11 @@ public abstract class Entity
 	float speed;
 	boolean movable;
 	
+	Quad hitbox;
+	int maxHealth;
+	int health;
+	Level level;
+	
 	float height;
 	float width;
 	float rot;
@@ -25,12 +32,18 @@ public abstract class Entity
 	long lastTick;
 	
 	Random gen = new Random();
-	public Entity(float x, float y, float speed)
+	
+	public Entity(Level level, float x, float y, float speed, int maxHealth)
 	{
 		this.x = x;
 		this.y = y;	
 		this.speed = speed;
 		movable = true;
+		
+		hitbox = new Quad(x, y, width, height);
+		this.maxHealth = maxHealth;
+		health = maxHealth;
+		this.level = level;
 		
 		tickCount = 0;
 		lastTick = System.currentTimeMillis();
@@ -51,14 +64,41 @@ public abstract class Entity
 		return y;
 	}
 	
+	public Quad getHitbox()
+	{
+		return hitbox;
+	}
+	
+	public void damage(int damage)
+	{
+		health -= damage;
+	}
+	
 	public void update()
 	{
 		tickCount ++;
+		hitbox = new Quad(x, y, width, height);
+		
+		if(health <= 0)
+		{
+			die();
+		}
 	}
 	
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		BaseModel.render(x, y, width, height, rot, g);
+	}
+	
+	public void die()
+	{
+		for(int i = 0; i < level.getEntities().size(); i ++)
+		{
+			if(level.getEntities().get(i) == this)
+			{
+				level.getEntities().remove(i);
+			}
+		}
 	}
 	
 	public boolean distanceSense(float distance, BasicPlayer protag)

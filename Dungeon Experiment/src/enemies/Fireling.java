@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import map.Level;
 import particle.OrbitingParticle;
 import player.BasicPlayer;
 import renders.AnimationSet;
@@ -14,16 +15,15 @@ import renders.AnimationSet;
 public class Fireling extends Entity
 {
 	ArrayList<OrbitingParticle> flames = new ArrayList<OrbitingParticle>();
-	AnimationSet eye = new AnimationSet("res/Enemies/Fireling/Eyes", 100);
 	
 	boolean pulsing;
 	int pulseCounter;
 	
 	BasicPlayer protag;
 	
-	public Fireling(float x, float y, float speed, BasicPlayer protag)
+	public Fireling(Level level, float x, float y, float speed, BasicPlayer protag)
 	{
-		super(x, y, speed);
+		super(level, x, y, speed, 100);
 		
 		for(int count = 0; count < 4; count ++)
 		{
@@ -32,8 +32,8 @@ public class Fireling extends Entity
 		
 		for(OrbitingParticle flame : flames)
 		{
-			flame.setAnimation("res/Enemies/Fireling/Eyes", 100);
-			flame = (OrbitingParticle) flame.setSize(64, 64);
+			flame.setAnimation("res/Enemies/Fireling/Fireball", 100);
+			flame = (OrbitingParticle) flame.setSize(32, 32);
 		}
 		
 		setAnimation("res/Enemies/Fireling/Body", 100);
@@ -50,8 +50,6 @@ public class Fireling extends Entity
 	public void update()
 	{
 		super.update();
-		
-		eye.loopAnimate();
 		
 		BaseModel.resetAnimate();
 		
@@ -72,8 +70,6 @@ public class Fireling extends Entity
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		super.render(gc, g);
-		
-		eye.render(x, y, width, height, rot, g);
 		
 		for(OrbitingParticle flame : flames)
 		{

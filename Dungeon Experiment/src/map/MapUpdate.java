@@ -14,8 +14,9 @@ import main.Quad;
 
 public class MapUpdate {
 	
-	public static SimpleRoom room = new SimpleRoom(new Block("res/textures/blocks/Stone.png"), new Block("res/textures/blocks/LightStone.png"));
-	
+	/*public static SimpleRoom room = new SimpleRoom(new Block("res/textures/blocks/Stone.png", new Color(64/255, 64/255, 64/255)), 
+			new Block("res/textures/blocks/LightStone.png", new Color(128/255, 128/255, 128/255)));
+	*/
 	public static void init()
 	{
 		
@@ -37,12 +38,12 @@ public class MapUpdate {
 
 			for (int y = 0; y < 20; y++) {
 
-				if (room.getBlock(x, y).getCollides()) {
+				/*if (room.getBlock(x, y).getCollides()) {
 					Quad quad = new Quad(x * 32, y * 32, 32, 32);
 
 					if (quad.checkPoint((float) X, (float) Y))
 						return true;
-				}
+				}*/
 			}
 		}
 		return false;

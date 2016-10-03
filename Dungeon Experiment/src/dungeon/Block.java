@@ -1,19 +1,16 @@
 package dungeon;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 import renders.BasicImage;
 
-public class Block {
+public class Block extends BasicTile{
 
-	private String ref;
 	private boolean collides;
-	private BasicImage sprite;
 
-	public Block(String ref) {
-
-		this.ref = ref;
-		sprite = new BasicImage(ref);
+	public Block(String ref, Color id) {
+		super(ref, id);
 	}
 
 	public void setCollides(boolean bool) {
@@ -33,13 +30,7 @@ public class Block {
 
 	}
 
-	public void render(float x, float y, float xa, float ya, float width, float height, float rot, Graphics g) {
-
-		sprite.render( x * 32 - xa, y * 32 - ya, width, height, rot, g);
-
-	}
-
 	public Block clone() {
-		return new Block(ref).setCollidesO(collides);
+		return new Block(ref, id).setCollidesO(collides);
 	}
 }

@@ -13,10 +13,16 @@ public class BasicImage
 	{
 		flip = false;
 		
-		try {
-			sprite = new Image(ref);
-		} catch (SlickException e) {
+		if(ref.equals("") || ref.equals(null))
+		{
 			setError();
+		}else
+		{
+			try {
+				sprite = new Image(ref);
+			} catch (SlickException e) {
+				setError();
+			}
 		}
 	}
 

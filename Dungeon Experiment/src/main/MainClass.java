@@ -18,11 +18,12 @@ import map.MapRender;
 import map.MapUpdate;
 import particle.OrbitingParticle;
 import player.BasicPlayer;
+import player.Ninja;
 
 public class MainClass extends BasicGame 
 {
 	public map.Level level;
-	BasicPlayer derp;
+	Ninja derp;
 
 	public MainClass(String gamename) {
 		super(gamename);
@@ -34,9 +35,21 @@ public class MainClass extends BasicGame
 		level = new map.Level();
 		MapRender.init(level);
 		
-		derp = new BasicPlayer(1);
+		derp = new Ninja(level, 2);
 		
-		Fireling Craig = new Fireling(600, 600, 0.5F, derp);
+		Fireling Craig = new Fireling(level, 600, 300, 0.5F, derp);
+		
+		level.addEntity(Craig);
+		
+		Craig = new Fireling(level, 300, 600, 0.5F, derp);
+		
+		level.addEntity(Craig);
+		
+		Craig = new Fireling(level, 300, 900, 0.5F, derp);
+		
+		level.addEntity(Craig);
+		
+		Craig = new Fireling(level, 900, 300, 0.5F, derp);
 		
 		level.addEntity(Craig);
 		
@@ -69,6 +82,8 @@ public class MainClass extends BasicGame
 		MapRender.render(gc, g);
 		
 		level.render(gc, g);
+		
+		derp.render(g);
 		
 	}
 

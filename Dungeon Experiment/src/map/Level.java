@@ -7,14 +7,17 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import enemies.Entity;
+import projectiles.BasicProjectile;
 
 public class Level 
 {
 	ArrayList<Entity> entities;
+	ArrayList<BasicProjectile> projectiles;
 	
 	public Level()
 	{
 		entities = new ArrayList<Entity>();
+		projectiles = new ArrayList<BasicProjectile>();
 	}
 	
 	public ArrayList<Entity> getEntities()
@@ -32,6 +35,21 @@ public class Level
 		entities.remove(e);
 	}
 	
+	public ArrayList<BasicProjectile> getProjectiles()
+	{
+		return projectiles;
+	}
+	
+	public void addProjectile(BasicProjectile p)
+	{
+		projectiles.add(p);
+	}
+	
+	public void removeProjectile(BasicProjectile p)
+	{
+		projectiles.remove(p);
+	}
+	
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		for(Entity e : entities)
@@ -42,9 +60,9 @@ public class Level
 	
 	public void update()
 	{
-		for(Entity e : entities)
+		for(int i = 0; i < entities.size(); i ++)
 		{
-			e.update();
+			entities.get(i).update();
 		}
 	}
 }
