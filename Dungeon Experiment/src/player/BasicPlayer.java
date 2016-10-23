@@ -22,9 +22,10 @@ public class BasicPlayer
 	
 	Input input;
 	
-	AnimationSet idle;
+	AnimationSet side;
 	float height;
 	float width;
+	boolean back;
 	
 	public BasicPlayer(float speed, int health)
 	{
@@ -40,6 +41,8 @@ public class BasicPlayer
 		slowed = false;
 		
 		input = new Input(1);
+		
+		back = false;
 	}
 	
 	public void update()
@@ -49,6 +52,10 @@ public class BasicPlayer
 			if(input.isKeyDown(input.KEY_W))
 			{
 				MapRender.move(0, -speed);
+				back = true;
+			}else
+			{
+				back = false;
 			}
 			if(input.isKeyDown(input.KEY_S))
 			{
@@ -57,17 +64,19 @@ public class BasicPlayer
 			if(input.isKeyDown(input.KEY_A))
 			{
 				MapRender.move(-speed, 0);
+				side.setFlip(true);
 			}
 			if(input.isKeyDown(input.KEY_D))
 			{
 				MapRender.move(speed, 0);
+				side.setFlip(false);
 			}
 		}
 	}
 	
 	public void render(Graphics g) throws SlickException
 	{
-		idle.render(x, y, width, height, 0, g);
+		side.render(x, y, width, height, 0, g);
 	}
 	
 	public float getX()

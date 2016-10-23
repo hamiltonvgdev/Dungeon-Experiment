@@ -11,7 +11,8 @@ public class AnimationSet
 	ArrayList<BasicImage> Animation;
 	int frame;
 	long delay;
-	long lastTick;
+	public long lastTick;
+	boolean ended;
 	
 	int counter;
 	
@@ -36,6 +37,7 @@ public class AnimationSet
 		frame = 0;
 		counter = 0;
 		
+		ended = false;
 	}
 	
 	public void resetAnimate()
@@ -90,6 +92,22 @@ public class AnimationSet
 		
 	}
 	
+	public void endAnimate()
+	{
+		if(System.currentTimeMillis() - lastTick >= delay)
+		{
+			if(frame < Animation.size() - 1)
+			{
+				frame ++;
+			}else
+			{
+				ended = true;
+			}
+			
+			lastTick = System.currentTimeMillis();
+		}
+	}
+	
 	public void render(float x, float y, float width, float height, float rot, Graphics g) 
 	{
 		Animation.get(frame).render(x, y, width, height, rot, g);
@@ -101,6 +119,16 @@ public class AnimationSet
 		{
 			frame.setFlip(Flip);
 		}
+	}
+	
+	public void setDelay(long delay)
+	{
+		this.delay = delay;
+	}
+	
+	public void reset()
+	{
+		frame = 0;
 	}
 	
 	public String getRef(int i)
@@ -116,5 +144,10 @@ public class AnimationSet
 	public int getCurrentFrame()
 	{
 		return frame;
+	}
+	
+	public boolean ended()
+	{
+		return ended;
 	}
 }

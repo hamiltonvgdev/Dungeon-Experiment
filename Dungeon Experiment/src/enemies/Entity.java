@@ -64,6 +64,11 @@ public abstract class Entity
 		return y;
 	}
 	
+	public void setMovable(boolean movable)
+	{
+		this.movable = movable;
+	}
+	
 	public Quad getHitbox()
 	{
 		return hitbox;
