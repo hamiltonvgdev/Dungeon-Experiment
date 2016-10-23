@@ -1,11 +1,14 @@
 package main;
 
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+
 public class Quad {
 	public float width, height, x, y;
 
 	public Quad(float x, float y, float width, float height) {
-		this.x = x;
-		this.y = y;
+		this.x = x - width / 2;
+		this.y = y - height / 2;
 		this.width = width;
 		this.height = height;
 	}
@@ -41,5 +44,10 @@ public class Quad {
 		}
 		
 		return intersect;
+	}
+	
+	public void render(Graphics g) throws SlickException
+	{
+		
 	}
 }

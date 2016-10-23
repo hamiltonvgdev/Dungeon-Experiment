@@ -56,7 +56,7 @@ public class Fireling extends Entity
 		for(OrbitingParticle flame : flames)
 		{
 			flame.setOrigin(x, y);
-			flame.update(1);
+			flame.update(2);
 		}
 		
 		wander();

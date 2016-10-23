@@ -16,12 +16,15 @@ import renders.AnimationSet;
 
 public class Ninja extends BasicPlayer
 {
+	AnimationSet back;
+	
 	Level level;
 	
 	int shurikenCharges;
 	ArrayList<Shuriken> Shurikens; 
 	long shurikenLastTick;
 	boolean shurikenReturn;
+	boolean shurikening;
 	
 	int kunaiCharges;
 	long reloadTime;
@@ -33,7 +36,7 @@ public class Ninja extends BasicPlayer
 	boolean shadow;
 	float shadowX;
 	float shadowY;
-	float shadowRadius;
+	float shadowSpeed;
 	long shadowLastTick;
 	AnimationSet Shadow;
 
@@ -41,8 +44,8 @@ public class Ninja extends BasicPlayer
 	{
 		super(speed, 150);
 		
-		height = 25 * 3;
-		width = 16 * 3;
+		height = 128;
+		width = 128;
 		
 		this.level = level;
 		
@@ -51,7 +54,7 @@ public class Ninja extends BasicPlayer
 		shurikenLastTick = System.currentTimeMillis();
 		shurikenReturn = false;
 		
-		kunaiCharges = 5;
+		kunaiCharges = 4;
 		Kunais = new ArrayList<Kunai>();
 		reloadTime = 1000;
 		reloadTick = System.currentTimeMillis();
@@ -60,10 +63,11 @@ public class Ninja extends BasicPlayer
 		shadow = false;
 		shadowX = x;
 		shadowY = y;
-		shadowRadius = 3;
+		shadowSpeed = 5;
 		shadowLastTick = System.currentTimeMillis();
 		
-		idle = new AnimationSet("res/Player/Ninja/Body", 100);
+		side = new AnimationSet("res/Player/Ninja/Body/Front", 60);
+		back = new AnimationSet("res/Player/Ninja/Body/Back", 300);
 		Shadow = new AnimationSet("res/Player/Ninja/Shadow", 100);
 	}
 
@@ -123,7 +127,7 @@ public class Ninja extends BasicPlayer
 		{
 			if(Kunais.size() < kunaiCharges)
 			{
-				if(System.currentTimeMillis() - kunaiLastTick > 40)
+				if(System.currentTimeMillis() - kunaiLastTick > 60)
 				{
 					Kunai derp = new Kunai(x, y, level);
 					Kunais.add(derp);
@@ -135,6 +139,13 @@ public class Ninja extends BasicPlayer
 				reloadTick = System.currentTimeMillis();
 				throwing = false;
 			}
+			
+			side.endAnimate();
+		}
+		
+		if(!throwing && System.currentTimeMillis() - reloadTick > reloadTime - 10)
+		{
+			side.reset();
 		}
 		
 		for(int i = 0; i < Kunais.size() ; i ++)
@@ -150,11 +161,12 @@ public class Ninja extends BasicPlayer
 		{
 			projectShadow();
 			movable = false;
-		}else if(input.isMouseButtonDown(input.MOUSE_MIDDLE_BUTTON))
+		}else if(input.isKeyDown(input.KEY_Z))
 		{
 			shadowX = 300;
 			shadowY = 300;
-		}else if(input.isKeyDown(input.KEY_Z))
+			shadow = false;
+		}else if(input.isMouseButtonDown(input.MOUSE_MIDDLE_BUTTON))
 		{
 			if(shadow)
 			{
@@ -170,7 +182,31 @@ public class Ninja extends BasicPlayer
 					
 					shadowLastTick = System.currentTimeMillis();
 				}
+				shadow = false;
 			}
+		}
+		
+		if(input.isKeyDown(input.KEY_W))
+		{
+			shadowY += speed;
+		}
+		if(input.isKeyDown(input.KEY_S))
+		{
+			shadowY += -speed;
+		}
+		if(input.isKeyDown(input.KEY_A))
+		{
+			shadowX += speed;
+		}
+		if(input.isKeyDown(input.KEY_D))
+		{
+			shadowX += -speed;
+		}
+		
+		if(!shadow)
+		{
+			shadowX = x;
+			shadowY = y;
 		}
 		
 		if(!input.isMouseButtonDown(input.MOUSE_RIGHT_BUTTON))
@@ -181,7 +217,13 @@ public class Ninja extends BasicPlayer
 	
 	public synchronized void render(Graphics g) throws SlickException
 	{	
-		super.render(g);
+		if(super.back)
+		{
+			back.render(x, y, width, height, 0, g);
+		}else
+		{
+			super.render(g);
+		}
 		
 		Shadow.render(shadowX, shadowY, width, height, 0, g);
 		
@@ -207,7 +249,7 @@ public class Ninja extends BasicPlayer
 		{
 			if(shadowY - height > 0)
 			{
-				shadowY -= shadowRadius;
+				shadowY -= shadowSpeed;
 			}
 		}
 		
@@ -215,7 +257,7 @@ public class Ninja extends BasicPlayer
 		{
 			if(shadowY + height < Config.HEIGHT)
 			{
-				shadowY += shadowRadius;
+				shadowY += shadowSpeed;
 			}
 		}
 		
@@ -223,7 +265,7 @@ public class Ninja extends BasicPlayer
 		{
 			if(shadowX - width > 0)
 			{
-				shadowX -= shadowRadius;
+				shadowX -= shadowSpeed;
 			}
 		}
 		
@@ -231,7 +273,7 @@ public class Ninja extends BasicPlayer
 		{
 			if(shadowX + width < Config.WIDTH)
 			{
-				shadowX += shadowRadius;
+				shadowX += shadowSpeed;
 			}
 		}
 	}

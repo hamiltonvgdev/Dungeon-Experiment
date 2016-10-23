@@ -18,12 +18,13 @@ import map.MapRender;
 import map.MapUpdate;
 import particle.OrbitingParticle;
 import player.BasicPlayer;
+import player.CyberMage;
 import player.Ninja;
 
 public class MainClass extends BasicGame 
 {
 	public map.Level level;
-	Ninja derp;
+	BasicPlayer derp;
 
 	public MainClass(String gamename) {
 		super(gamename);
@@ -37,19 +38,19 @@ public class MainClass extends BasicGame
 		
 		derp = new Ninja(level, 2);
 		
-		Fireling Craig = new Fireling(level, 600, 300, 0.5F, derp);
+		Fireling Craig = new Fireling(level, 600, 300, 1F, derp);
 		
 		level.addEntity(Craig);
 		
-		Craig = new Fireling(level, 300, 600, 0.5F, derp);
+		Craig = new Fireling(level, 300, 600, 1F, derp);
 		
 		level.addEntity(Craig);
 		
-		Craig = new Fireling(level, 300, 900, 0.5F, derp);
+		Craig = new Fireling(level, 300, 900, 1F, derp);
 		
 		level.addEntity(Craig);
 		
-		Craig = new Fireling(level, 900, 300, 0.5F, derp);
+		Craig = new Fireling(level, 900, 300, 1F, derp);
 		
 		level.addEntity(Craig);
 		
