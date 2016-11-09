@@ -56,7 +56,7 @@ public class MapReader
 		
 		for(int y = 0; y < collide.getHeight(); y ++)
 		{
-			for(int x = 0; x < collide.getHeight(); x ++)
+			for(int x = 0; x < collide.getWidth(); x ++)
 			{
 				collisionId.add(collide.getColor(x, y).getGreen());
 			}

@@ -44,8 +44,8 @@ public class Ninja extends BasicPlayer
 	{
 		super(speed, 150);
 		
-		height = 128;
-		width = 128;
+		height = (float) (64 * 1.5);
+		width = (float) (64 * 1.5);
 		
 		this.level = level;
 		
@@ -69,6 +69,9 @@ public class Ninja extends BasicPlayer
 		side = new AnimationSet("res/Player/Ninja/Body/Front", 60);
 		back = new AnimationSet("res/Player/Ninja/Body/Back", 300);
 		Shadow = new AnimationSet("res/Player/Ninja/Shadow", 100);
+		
+		side.setAfterImage(10, 50);
+		side.toggleAfterImage(true);
 	}
 
 	public void update()
@@ -217,6 +220,9 @@ public class Ninja extends BasicPlayer
 	
 	public synchronized void render(Graphics g) throws SlickException
 	{	
+		
+		Shadow.render(shadowX, shadowY, width, height, 0, g);
+		
 		if(super.back)
 		{
 			back.render(x, y, width, height, 0, g);
@@ -224,8 +230,6 @@ public class Ninja extends BasicPlayer
 		{
 			super.render(g);
 		}
-		
-		Shadow.render(shadowX, shadowY, width, height, 0, g);
 		
 		for(Shuriken shuriken : Shurikens)
 		{

@@ -103,6 +103,10 @@ public class Shuriken extends BasicProjectile
 		}
 		
 		sprite = new BasicImage("res/Player/Ninja/Shuriken/Shuriken.png");
+
+		sprite.setAfterImage(5, 20);
+		sprite.toggleAfterImage(true);
+		sprite.getAfterImage().toggleDecreasingOpacity();
 		
 		returned = false;
 		

@@ -10,13 +10,13 @@ import org.newdawn.slick.SlickException;
 import dungeon.BasicTile;
 import dungeon.Block;
 import dungeon.Lava;
+import dungeon.TreeBlock;
 import enemies.Entity;
-import main.MainClass;
 import projectiles.BasicProjectile;
 
 public class MapRender {
-	private static float xD = 0;
-	private static float yD = 0;
+	static float xD = 0;
+	static float yD = 0;
 	private static Level level;
 	static ArrayList<BasicTile> tiles;
 	
@@ -38,7 +38,8 @@ public class MapRender {
 		MapReader.addTile(new Lava("res/Textures/blocks/Lava/lava 4.png", 
 				new Color((float) (255.0/255), (float) (100.0/255), (float) (0.0/255))));
 		
-		
+		MapReader.addTile(new TreeBlock("res/Textures/blocks/Tree Block/Tree Block.png", 
+				new Color((float) (0.0/255), (float) (255.0/255), (float) (0.0/255))));
 		
 		MapReader.readMapImage("res/Level/Tiles/Levelish.png");
 		tiles = new ArrayList<BasicTile>();
@@ -68,16 +69,6 @@ public class MapRender {
 	}
 
 	public static void render(GameContainer gc, Graphics g) throws SlickException {
-/*
-		for (int x = 0; x < 32; x++) {
-
-			for (int y = 0; y < 20; y++) {
-
-				MapUpdate.room.getBlock(x, y).render((float)x,(float) y, xD, yD, 0.0F, g);
-
-			}
-
-		}*/
 		
 		for(int y = 0; y < MapReader.yT; y ++)
 		{

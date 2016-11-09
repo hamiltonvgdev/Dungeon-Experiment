@@ -3,6 +3,7 @@ package particle;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 
 import renders.AnimationSet;
 
@@ -106,7 +107,7 @@ public class Particle
 			
 		}
 	}
-	public void render(Graphics g)
+	public void render(Graphics g) throws SlickException
 	{
 		if(!isDone)
 		{
