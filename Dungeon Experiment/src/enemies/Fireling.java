@@ -25,9 +25,9 @@ public class Fireling extends Entity
 	{
 		super(level, x, y, speed, 100);
 		
-		for(int count = 0; count < 4; count ++)
+		for(int count = 0; count < 5; count ++)
 		{
-			flames.add(new OrbitingParticle(x, y, 128, 0 + count * 360 / 4, 0.1F));
+			flames.add(new OrbitingParticle(x, y, 128, 0 + count * 360 / 5, 0.1F));
 		}
 		
 		for(OrbitingParticle flame : flames)

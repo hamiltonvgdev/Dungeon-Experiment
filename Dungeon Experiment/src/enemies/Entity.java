@@ -165,12 +165,22 @@ public abstract class Entity
 			x += xa * speed;
 			y += ya * speed;
 		}
+		
+		if(BaseModel.afterImage)
+		{
+			BaseModel.moveAfterImage(-xa * speed, -ya * speed);
+		}
 	}
 	
 	public void Move(float xa, float ya)
 	{
 		x += xa;
 		y += ya;
+		
+		if(BaseModel.afterImage)
+		{
+			BaseModel.moveAfterImage(xa, ya );
+		}
 	}
 	
 	public void follow(Entity patient)

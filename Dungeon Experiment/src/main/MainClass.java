@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +14,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
+import enemies.Bee;
 import enemies.Fireling;
+import enemies.Hive;
 import map.MapRender;
 import map.MapUpdate;
 import particle.OrbitingParticle;
@@ -24,7 +27,7 @@ import player.Ninja;
 public class MainClass extends BasicGame 
 {
 	public map.Level level;
-	BasicPlayer derp;
+	BasicPlayer player;
 
 	public MainClass(String gamename) {
 		super(gamename);
@@ -36,23 +39,28 @@ public class MainClass extends BasicGame
 		level = new map.Level();
 		MapRender.init(level);
 		
-		derp = new Ninja(level, 2);
+		player = new Ninja(level, 2);
 		
-		Fireling Craig = new Fireling(level, 600, 300, 1F, derp);
-		
-		level.addEntity(Craig);
-		
-		Craig = new Fireling(level, 300, 600, 1F, derp);
+		Fireling Craig = new Fireling(level, 600, 300, 1F, player);
 		
 		level.addEntity(Craig);
 		
-		Craig = new Fireling(level, 300, 900, 1F, derp);
+		Craig = new Fireling(level, 300, 600, 1F, player);
 		
 		level.addEntity(Craig);
 		
-		Craig = new Fireling(level, 900, 300, 1F, derp);
+		Craig = new Fireling(level, 300, 900, 1F, player);
 		
 		level.addEntity(Craig);
+		
+		Craig = new Fireling(level, 900, 300, 1F, player);
+		
+		level.addEntity(Craig);
+		
+		ArrayList<Bee> Swarm = new ArrayList<Bee>();
+		
+		Hive derp = new Hive(level, 0, 0, player);
+		level.addEntity(derp);
 		
 	}
 
@@ -63,7 +71,7 @@ public class MainClass extends BasicGame
 		
 		level.update();
 		
-		derp.update();
+		player.update();
 	}
 
 	@Override
@@ -84,7 +92,7 @@ public class MainClass extends BasicGame
 		
 		level.render(gc, g);
 		
-		derp.render(g);
+		player.render(g);
 		
 	}
 
