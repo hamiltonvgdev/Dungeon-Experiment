@@ -9,7 +9,6 @@ import org.newdawn.slick.SlickException;
 
 import dungeon.BasicTile;
 import dungeon.Block;
-import dungeon.Lava;
 import enemies.Entity;
 import main.MainClass;
 import projectiles.BasicProjectile;
@@ -28,15 +27,6 @@ public class MapRender {
 				new Color((float) (64.0/255), (float) (64.0/255), (float) (64.0/255))));
 		MapReader.addTile(new Block("res/Textures/blocks/Stone/LightStone.png", 
 				new Color((float) (128.0/255), (float) (128.0/255), (float) (128.0/255))));
-		
-		MapReader.addTile(new Lava("res/Textures/blocks/Lava/lava 1.png", 
-				new Color((float) (255.0/255), (float) (97.0/255), (float) (0.0/255))));
-		MapReader.addTile(new Lava("res/Textures/blocks/Lava/lava 2.png", 
-				new Color((float) (255.0/255), (float) (98.0/255), (float) (0.0/255))));
-		MapReader.addTile(new Lava("res/Textures/blocks/Lava/lava 3.png", 
-				new Color((float) (255.0/255), (float) (99.0/255), (float) (0.0/255))));
-		MapReader.addTile(new Lava("res/Textures/blocks/Lava/lava 4.png", 
-				new Color((float) (255.0/255), (float) (100.0/255), (float) (0.0/255))));
 		
 		
 		

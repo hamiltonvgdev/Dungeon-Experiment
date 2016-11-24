@@ -18,7 +18,6 @@ import map.MapRender;
 import map.MapUpdate;
 import particle.OrbitingParticle;
 import player.BasicPlayer;
-import player.CyberMage;
 import player.Ninja;
 
 public class MainClass extends BasicGame 
