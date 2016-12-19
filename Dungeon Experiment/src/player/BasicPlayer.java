@@ -52,7 +52,12 @@ public class BasicPlayer
 			if(input.isKeyDown(input.KEY_W))
 			{
 				MapRender.move(0, -speed);
-				back = true;
+				//back = true;
+				
+				if(side.afterImage)
+				{
+					side.moveAfterImage(0, speed);
+				}
 			}else
 			{
 				back = false;
@@ -60,16 +65,31 @@ public class BasicPlayer
 			if(input.isKeyDown(input.KEY_S))
 			{
 				MapRender.move(0, speed);
+				
+				if(side.afterImage)
+				{
+					side.moveAfterImage(0, -speed);
+				}
 			}
 			if(input.isKeyDown(input.KEY_A))
 			{
 				MapRender.move(-speed, 0);
 				side.setFlip(true);
+				
+				if(side.afterImage)
+				{
+					side.moveAfterImage(speed, 0);
+				}
 			}
 			if(input.isKeyDown(input.KEY_D))
 			{
 				MapRender.move(speed, 0);
 				side.setFlip(false);
+				
+				if(side.afterImage)
+				{
+					side.moveAfterImage(-speed, 0);
+				}
 			}
 		}
 	}

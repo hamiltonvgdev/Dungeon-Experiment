@@ -26,7 +26,7 @@ public class Quad {
 	{
 		boolean intersect = false;
 		
-		for(float x = quad.x - quad.width; x < quad.x + quad.width; x ++)
+		for(float x = quad.x ; x < quad.x + quad.width; x ++)
 		{
 			for(float y = quad.y - quad.height; y < quad.y + quad.height; y ++)
 			{

@@ -11,6 +11,9 @@ public class Block extends BasicTile{
 
 	public Block(String ref, Color id) {
 		super(ref, id);
+		
+		x = 0;
+		y = 0;
 	}
 
 	public void setCollides(boolean bool) {
@@ -24,10 +27,6 @@ public class Block extends BasicTile{
 
 	public boolean getCollides() {
 		return collides;
-	}
-
-	public void update(int x, int y) {
-
 	}
 
 	public Block clone() {
